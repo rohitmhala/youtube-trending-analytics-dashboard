@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Environment variables (contains AWS resource names - keep out of git)
+.env
+.env.local
+
+# Editor
+.vscode/
+.idea/

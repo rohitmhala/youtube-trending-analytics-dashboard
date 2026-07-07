@@ -75,7 +75,7 @@ const CategoryChart = () => {
                   ))}
                 </Pie>
                 <Tooltip
-                  formatter={(value: number) => [compactNumber(value), "Views"]}
+                  formatter={(value) => [compactNumber(Number(value ?? 0)), "Views"]}
                   contentStyle={{
                     background: "#12161F",
                     border: "1px solid #1E2530",

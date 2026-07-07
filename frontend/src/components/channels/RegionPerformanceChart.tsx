@@ -61,14 +61,14 @@ const RegionPerformanceChart = () => {
           />
 
           <Tooltip
-            formatter={(value: number) => [compactNumber(value), "Views"]}
+            formatter={(value) => [compactNumber(Number(value ?? 0)), "Views"]}
             contentStyle={{
               background: "#12161F",
               border: "1px solid #1E2530",
               borderRadius: "8px",
               fontSize: "12px",
             }}
-            labelFormatter={(label: string) => label.toUpperCase()}
+            labelFormatter={(label) => String(label ?? "").toUpperCase()}
           />
 
           <Bar dataKey="total_views" fill={ACCENT_CYAN} radius={[0, 3, 3, 0]} barSize={14} />

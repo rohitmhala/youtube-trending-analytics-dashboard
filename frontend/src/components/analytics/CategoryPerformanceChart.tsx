@@ -70,7 +70,7 @@ const CategoryPerformanceChart = () => {
           />
 
           <Tooltip
-            formatter={(value: number) => [`${value.toFixed(2)}%`, "Avg Engagement"]}
+            formatter={(value) => [`${Number(value ?? 0).toFixed(2)}%`, "Avg Engagement"]}
             contentStyle={{
               background: "#12161F",
               border: "1px solid #1E2530",

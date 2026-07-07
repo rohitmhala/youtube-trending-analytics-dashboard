@@ -82,7 +82,10 @@ const ViewsChart = () => {
                 fontSize: "12px",
               }}
               labelStyle={{ color: "#E5E9F0" }}
-              formatter={(value: number, name: string) => [compactNumber(value), name]}
+              formatter={(value, name) => [
+  compactNumber(Number(value ?? 0)),
+  String(name ?? ""),
+]}
             />
 
             <Legend

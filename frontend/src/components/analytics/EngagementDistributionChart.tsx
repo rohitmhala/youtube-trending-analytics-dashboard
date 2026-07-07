@@ -66,7 +66,7 @@ const EngagementDistributionChart = () => {
               borderRadius: "8px",
               fontSize: "12px",
             }}
-            formatter={(value: number) => [`${value.toFixed(2)}%`, "Engagement"]}
+            formatter={(value) => [`${Number(value ?? 0).toFixed(2)}%`, "Engagement"]}
           />
 
           <Bar dataKey="avg_engagement_rate" fill={ACCENT_AMBER} radius={[3, 3, 0, 0]} />

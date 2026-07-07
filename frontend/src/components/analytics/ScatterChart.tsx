@@ -88,9 +88,11 @@ const ScatterChart = () => {
               borderRadius: "8px",
               fontSize: "12px",
             }}
-            formatter={(value: number, name: string) =>
-              name === "Engagement Rate" ? `${value.toFixed(2)}%` : compactNumber(value)
-            }
+            formatter={(value, name) =>
+  name === "Engagement Rate"
+    ? `${Number(value ?? 0).toFixed(2)}%`
+    : compactNumber(Number(value ?? 0))
+}
             labelFormatter={(_, payload) =>
               payload && payload.length ? payload[0].payload.channel_title : ""
             }

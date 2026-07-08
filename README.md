@@ -1,102 +1,162 @@
-# YouTube Trending Analytics Dashboard
+# 📊 YouTube Trending Analytics Dashboard
 
-A live analytics dashboard built on top of an AWS Medallion Architecture
-YouTube data pipeline (Bronze -> Silver -> Gold), queried live through
-Amazon Athena. No mock/fake data - every chart, KPI, and table reads
-directly from the real Gold-layer tables:
+> End-to-End AWS Data Pipeline \| FastAPI \| React \| Amazon Athena
 
-- `trending_analytics`
-- `channel_analytics`
-- `category_analytics`
+```{=html}
+<p align="center">
+```
+`<a href="https://youtube-trending-analytics-dashboar.vercel.app/">`{=html}
+`<img src="https://img.shields.io/badge/🚀_Live_Dashboard-Open-success?style=for-the-badge">`{=html}
+`</a>`{=html}
+`<a href="https://github.com/rohitmhala/youtube-trending-analytics-dashboard">`{=html}
+`<img src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github">`{=html}
+`</a>`{=html}
+```{=html}
+</p>
+```
+## Overview
 
-> Full architecture documentation and deployment guide will be completed
-> in a later phase. This README covers running the project locally.
+This project implements a complete cloud analytics solution for YouTube
+Trending data using a modern AWS data architecture.
 
-## Prerequisites
+-   Amazon S3 Data Lake
+-   AWS Glue ETL (Bronze → Silver → Gold)
+-   AWS Glue Data Catalog
+-   Amazon Athena
+-   FastAPI REST APIs
+-   React + TypeScript Dashboard
+-   Render + Vercel Deployment
 
-- Node.js 18+ and npm
-- Python 3.9+
-- AWS credentials configured locally (`aws configure`) with permission
-  to run Athena queries and read the Gold S3 bucket + Athena results bucket
-- Your Athena Gold database already populated (this dashboard does not
-  run the pipeline itself - it only reads from it)
+## Live Demo
 
-## 1. Backend setup (FastAPI)
+-   **Dashboard:**
+    https://youtube-trending-analytics-dashboar.vercel.app/
+-   **Backend:**
+    https://youtube-trending-analytics-dashboard.onrender.com
 
-```bash
-cd backend
-python -m venv venv
+## Architecture
 
-# Windows
-venv\Scripts\activate
-
-# Mac/Linux
-source venv/bin/activate
-
-pip install -r requirements.txt
+``` text
+Dataset
+   │
+   ▼
+Amazon S3
+   │
+   ▼
+AWS Glue ETL
+Bronze → Silver → Gold
+   │
+   ▼
+Glue Catalog
+   │
+   ▼
+Athena
+   │
+   ▼
+FastAPI
+   │
+   ▼
+React Dashboard
 ```
 
-Copy `.env.example` to `.env` and fill in your real values (region,
-Athena database name, Athena results bucket, workgroup):
+## Dashboard
 
-```bash
-cp .env.example .env
+Create a folder named `docs` and save your screenshot as:
+
+`docs/dashboard.png`
+
+Then GitHub will render it:
+
+``` markdown
+![Dashboard](docs/dashboard.png)
 ```
 
-Run the backend:
+## Features
 
-```bash
-uvicorn main:app --reload
+-   Executive KPI Dashboard
+-   Views & Likes Trend
+-   Category Distribution
+-   Analytics Dashboard
+-   Channel Analytics
+-   Region Analytics
+-   Business Insights
+-   Interactive Charts
+
+## Tech Stack
+
+### Frontend
+
+-   React
+-   TypeScript
+-   Vite
+-   Axios
+-   Recharts
+
+### Backend
+
+-   FastAPI
+-   Python
+-   Pandas
+-   PyAthena
+-   Boto3
+
+### AWS
+
+-   Amazon S3
+-   AWS Glue
+-   AWS Glue Catalog
+-   Amazon Athena
+-   IAM
+-   CloudWatch
+
+### Deployment
+
+-   Vercel
+-   Render
+-   GitHub
+
+## API
+
+-   GET /api/kpis
+-   GET /api/views-trend
+-   GET /api/category-distribution
+-   GET /api/top-channels
+-   GET /api/channels
+-   GET /api/regions
+-   GET /api/business-insights
+
+## Folder Structure
+
+``` text
+backend/
+frontend/
+docs/
+README.md
 ```
 
-Visit `http://127.0.0.1:8000` - you should see:
-```json
-{"status": "running", "message": "YouTube Analytics API"}
-```
+## Skills Demonstrated
 
-## 2. Frontend setup (React + Vite)
+-   Data Engineering
+-   ETL Pipelines
+-   AWS Cloud
+-   SQL Analytics
+-   Data Warehousing
+-   FastAPI
+-   React
+-   Data Visualization
+-   Business Intelligence
 
-In a separate terminal:
+## Note
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+The backend is hosted on Render's free tier. The first request after
+inactivity may take longer due to a cold start.
 
-Visit `http://localhost:5173`.
+## Author
 
-By default the frontend talks to `http://127.0.0.1:8000/api` (set in
-`frontend/.env` via `VITE_API_BASE_URL`). Change this before deploying
-to point at your deployed API Gateway URL instead.
+**Rohit Mhala**
 
-## Project structure
+-   GitHub: https://github.com/rohitmhala
+-   Live Dashboard:
+    https://youtube-trending-analytics-dashboar.vercel.app/
 
-```
-youtube-live-dashboard/
-├── backend/
-│   ├── app/
-│   │   ├── api/          # One route file per dashboard page
-│   │   ├── services/     # Athena query execution
-│   │   └── config/       # Environment-driven settings
-│   ├── main.py
-│   └── requirements.txt
-│
-└── frontend/
-    └── src/
-        ├── pages/         # One page per dashboard (Dashboard, Analytics,
-        │                    Channels, Categories, Regions, Settings)
-        ├── components/    # Charts, tables, KPI cards, layout
-        ├── context/       # Region filter state
-        └── services/      # Axios client for the backend API
-```
-
-## Notes on data accuracy
-
-Every number shown in this dashboard is either a direct column from the
-Gold layer or a genuine SQL aggregation (`SUM`, `AVG`, `MAX`, `COUNT`) of
-those columns - there are no hardcoded or placeholder values in any
-chart, table, or KPI card. The one exception is the "Regions" map, where
-marker *positions* use real-world capital city coordinates as a
-reference (not business data) - the size/color of each marker is driven
-entirely by live `total_views`/`avg_engagement_rate` from Athena.
+⭐ If you like this project, please give it a star.

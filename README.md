@@ -1,131 +1,138 @@
-# 📊 YouTube Trending Analytics Dashboard
+\#
 
-> End-to-End AWS Data Pipeline \| FastAPI \| React \| Amazon Athena
+::: {align="center"}
+📊 YouTube Trending Analytics Dashboard
+:::
+
+::: {align="center"}
+### 🚀 End-to-End AWS Data Pipeline • FastAPI • React • Amazon Athena • Business Intelligence
 
 ```{=html}
-<p align="center">
+<p>
 ```
 `<a href="https://youtube-trending-analytics-dashboar.vercel.app/">`{=html}
-`<img src="https://img.shields.io/badge/🚀_Live_Dashboard-Open-success?style=for-the-badge">`{=html}
+`<img src="https://img.shields.io/badge/🚀%20LIVE%20DASHBOARD-Open%20Now-success?style=for-the-badge">`{=html}
 `</a>`{=html}
+
 `<a href="https://github.com/rohitmhala/youtube-trending-analytics-dashboard">`{=html}
-`<img src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github">`{=html}
+`<img src="https://img.shields.io/badge/💻%20SOURCE%20CODE-GitHub-black?style=for-the-badge">`{=html}
 `</a>`{=html}
+
 ```{=html}
 </p>
 ```
-## Overview
+```{=html}
+<p>
+```
+`<img src="https://img.shields.io/badge/AWS-S3-FF9900?style=for-the-badge&logo=amazonaws"/>`{=html}
+`<img src="https://img.shields.io/badge/AWS-Glue-FF9900?style=for-the-badge&logo=amazonaws"/>`{=html}
+`<img src="https://img.shields.io/badge/Amazon-Athena-232F3E?style=for-the-badge&logo=amazonaws"/>`{=html}
+`<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi"/>`{=html}
+`<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react"/>`{=html}
+`<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript"/>`{=html}
+`<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python"/>`{=html}
+`<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel"/>`{=html}
+`<img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge"/>`{=html}
+```{=html}
+</p>
+```
+:::
 
-This project implements a complete cloud analytics solution for YouTube
-Trending data using a modern AWS data architecture.
+------------------------------------------------------------------------
 
--   Amazon S3 Data Lake
--   AWS Glue ETL (Bronze → Silver → Gold)
--   AWS Glue Data Catalog
--   Amazon Athena
--   FastAPI REST APIs
--   React + TypeScript Dashboard
--   Render + Vercel Deployment
+# 🌟 About The Project
 
-## Live Demo
+This project showcases a complete **cloud-based analytics platform**
+that transforms raw YouTube Trending data into interactive business
+insights using an end-to-end AWS data pipeline and a modern React
+dashboard.
 
--   **Dashboard:**
-    https://youtube-trending-analytics-dashboar.vercel.app/
--   **Backend:**
-    https://youtube-trending-analytics-dashboard.onrender.com
+## 🔗 Quick Access
 
-## Architecture
+-   🚀
+    **`<a href="https://youtube-trending-analytics-dashboar.vercel.app/">`{=html}Live
+    Dashboard`</a>`{=html}**
+-   💻
+    **`<a href="https://github.com/rohitmhala/youtube-trending-analytics-dashboard">`{=html}GitHub
+    Repository`</a>`{=html}**
+
+------------------------------------------------------------------------
+
+# 🖼️ Dashboard Preview
+
+> Save your screenshot as **docs/dashboard.png**
+
+![Dashboard](docs/dashboard.png)
+
+------------------------------------------------------------------------
+
+# 🏗️ Solution Architecture
 
 ``` text
-Dataset
-   │
-   ▼
-Amazon S3
-   │
-   ▼
-AWS Glue ETL
+Kaggle Dataset
+      │
+      ▼
+Amazon S3 (Bronze)
+      │
+      ▼
+AWS Glue ETL Jobs
 Bronze → Silver → Gold
-   │
-   ▼
-Glue Catalog
-   │
-   ▼
-Athena
-   │
-   ▼
-FastAPI
-   │
-   ▼
-React Dashboard
+      │
+      ▼
+Glue Data Catalog
+      │
+      ▼
+Amazon Athena
+      │
+      ▼
+FastAPI REST API
+      │
+      ▼
+React + TypeScript Dashboard
 ```
 
-## Dashboard
+------------------------------------------------------------------------
 
-Create a folder named `docs` and save your screenshot as:
+# ✨ Features
 
-`docs/dashboard.png`
+-   📈 Executive KPI Dashboard
+-   🍩 Donut & Scatter Charts
+-   📊 Interactive Business Insights
+-   🌎 Regional Analytics
+-   🎬 Channel Analytics
+-   🏷️ Category Analytics
+-   ⚡ FastAPI REST APIs
+-   ☁️ AWS Cloud Pipeline
+-   📱 Responsive UI
 
-Then GitHub will render it:
+------------------------------------------------------------------------
 
-``` markdown
-![Dashboard](docs/dashboard.png)
+# 🛠️ Tech Stack
+
+  Frontend     Backend    Cloud
+  ------------ ---------- -----------
+  React        FastAPI    Amazon S3
+  TypeScript   Python     AWS Glue
+  Recharts     Pandas     Athena
+  Axios        PyAthena   IAM
+
+------------------------------------------------------------------------
+
+# 📡 API Endpoints
+
+``` http
+GET /api/kpis
+GET /api/views-trend
+GET /api/category-distribution
+GET /api/top-channels
+GET /api/channels
+GET /api/regions
+GET /api/business-insights
 ```
 
-## Features
+------------------------------------------------------------------------
 
--   Executive KPI Dashboard
--   Views & Likes Trend
--   Category Distribution
--   Analytics Dashboard
--   Channel Analytics
--   Region Analytics
--   Business Insights
--   Interactive Charts
-
-## Tech Stack
-
-### Frontend
-
--   React
--   TypeScript
--   Vite
--   Axios
--   Recharts
-
-### Backend
-
--   FastAPI
--   Python
--   Pandas
--   PyAthena
--   Boto3
-
-### AWS
-
--   Amazon S3
--   AWS Glue
--   AWS Glue Catalog
--   Amazon Athena
--   IAM
--   CloudWatch
-
-### Deployment
-
--   Vercel
--   Render
--   GitHub
-
-## API
-
--   GET /api/kpis
--   GET /api/views-trend
--   GET /api/category-distribution
--   GET /api/top-channels
--   GET /api/channels
--   GET /api/regions
--   GET /api/business-insights
-
-## Folder Structure
+# 📂 Project Structure
 
 ``` text
 backend/
@@ -134,29 +141,48 @@ docs/
 README.md
 ```
 
-## Skills Demonstrated
+------------------------------------------------------------------------
 
--   Data Engineering
--   ETL Pipelines
--   AWS Cloud
--   SQL Analytics
--   Data Warehousing
--   FastAPI
--   React
--   Data Visualization
--   Business Intelligence
+# 🎯 Skills Demonstrated
 
-## Note
+✅ Data Engineering
 
-The backend is hosted on Render's free tier. The first request after
-inactivity may take longer due to a cold start.
+✅ ETL Pipeline Development
 
-## Author
+✅ AWS Cloud Analytics
 
-**Rohit Mhala**
+✅ Data Warehousing
 
--   GitHub: https://github.com/rohitmhala
--   Live Dashboard:
-    https://youtube-trending-analytics-dashboar.vercel.app/
+✅ SQL Analytics
 
-⭐ If you like this project, please give it a star.
+✅ REST API Development
+
+✅ Dashboard Development
+
+✅ Business Intelligence
+
+------------------------------------------------------------------------
+
+# 📝 Deployment
+
+  Component   Platform
+  ----------- ---------------
+  Frontend    Vercel
+  Backend     Render
+  Data Lake   Amazon S3
+  Analytics   Amazon Athena
+
+> **Note:** Render Free may take up to a minute on the first request
+> after inactivity.
+
+------------------------------------------------------------------------
+
+::: {align="center"}
+## ⭐ If you like this project, please give it a Star!
+
+### 👨‍💻 Rohit Mhala
+
+`<a href="https://youtube-trending-analytics-dashboar.vercel.app/">`{=html}🚀
+Live Dashboard`</a>`{=html} •
+`<a href="https://github.com/rohitmhala">`{=html}GitHub`</a>`{=html}
+:::

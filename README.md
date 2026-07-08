@@ -1,188 +1,114 @@
-\#
+# 📊 YouTube Trending Analytics Platform
 
-::: {align="center"}
-📊 YouTube Trending Analytics Dashboard
-:::
+An end-to-end analytics platform: a medallion-architecture ETL pipeline on
+AWS ingests and cleans YouTube trending data, and a live FastAPI + React
+dashboard queries it in real time via Amazon Athena.
 
-::: {align="center"}
-### 🚀 End-to-End AWS Data Pipeline • FastAPI • React • Amazon Athena • Business Intelligence
+[![Live Dashboard](https://img.shields.io/badge/Live%20Dashboard-Vercel-000000?style=for-the-badge&logo=vercel)](https://youtube-trending-analytics-dashboar.vercel.app/)
+[![API](https://img.shields.io/badge/API-Render-46E3B7?style=for-the-badge&logo=render)](https://youtube-trending-analytics-dashboard.onrender.com)
+[![AWS](https://img.shields.io/badge/AWS-Athena%20%7C%20Glue%20%7C%20S3-FF9900?style=for-the-badge&logo=amazon-aws)](docs/AWS-Pipeline.md)
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python)](docs/AWS-Pipeline.md)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](docs/Dashboard.md)
 
-```{=html}
-<p>
-```
-`<a href="https://youtube-trending-analytics-dashboar.vercel.app/">`{=html}
-`<img src="https://img.shields.io/badge/🚀%20LIVE%20DASHBOARD-Open%20Now-success?style=for-the-badge">`{=html}
-`</a>`{=html}
+| Resource | Link |
+|---|---|
+| 🌐 **Live Dashboard** | **[youtube-trending-analytics-dashboar.vercel.app](https://youtube-trending-analytics-dashboar.vercel.app/)** |
+| ⚡ **API** | **[youtube-trending-analytics-dashboard.onrender.com](https://youtube-trending-analytics-dashboard.onrender.com)** |
+| 💻 **Repo** | **[github.com/rohitmhala/youtube-trending-analytics-dashboard](https://github.com/rohitmhala/youtube-trending-analytics-dashboard)** |
 
-`<a href="https://github.com/rohitmhala/youtube-trending-analytics-dashboard">`{=html}
-`<img src="https://img.shields.io/badge/💻%20SOURCE%20CODE-GitHub-black?style=for-the-badge">`{=html}
-`</a>`{=html}
+> Backend runs on Render's free tier — the first load after inactivity may
+> take 30–60s while it cold-starts.
 
-```{=html}
-</p>
-```
-```{=html}
-<p>
-```
-`<img src="https://img.shields.io/badge/AWS-S3-FF9900?style=for-the-badge&logo=amazonaws"/>`{=html}
-`<img src="https://img.shields.io/badge/AWS-Glue-FF9900?style=for-the-badge&logo=amazonaws"/>`{=html}
-`<img src="https://img.shields.io/badge/Amazon-Athena-232F3E?style=for-the-badge&logo=amazonaws"/>`{=html}
-`<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi"/>`{=html}
-`<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react"/>`{=html}
-`<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript"/>`{=html}
-`<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python"/>`{=html}
-`<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel"/>`{=html}
-`<img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge"/>`{=html}
-```{=html}
-</p>
-```
-:::
+---
 
-------------------------------------------------------------------------
+## Overview
 
-# 🌟 About The Project
+YouTube's trending page shows *what's* trending — it doesn't answer which
+categories are gaining share, which channels trend consistently, or how
+engagement varies by region. This platform answers those questions with
+real data, end to end:
 
-This project showcases a complete **cloud-based analytics platform**
-that transforms raw YouTube Trending data into interactive business
-insights using an end-to-end AWS data pipeline and a modern React
-dashboard.
+1. **Pipeline** — ingests live YouTube API + Kaggle historical data across
+   10 regions, refines it through Bronze → Silver → Gold with an automated
+   data quality gate.
+2. **Dashboard** — queries the Gold layer live via Athena and presents it as
+   KPIs, trends, rankings, and auto-generated business insights.
 
-## 🔗 Quick Access
+Nothing is mocked — every chart is a live SQL aggregation.
 
--   🚀
-    **`<a href="https://youtube-trending-analytics-dashboar.vercel.app/">`{=html}Live
-    Dashboard`</a>`{=html}**
--   💻
-    **`<a href="https://github.com/rohitmhala/youtube-trending-analytics-dashboard">`{=html}GitHub
-    Repository`</a>`{=html}**
+---
 
-------------------------------------------------------------------------
+## Architecture
 
-# 🖼️ Dashboard Preview
-
-> Save your screenshot as **docs/dashboard.png**
-
-![Dashboard](docs/dashboard.png)
-
-------------------------------------------------------------------------
-
-# 🏗️ Solution Architecture
-
-``` text
-Kaggle Dataset
-      │
-      ▼
-Amazon S3 (Bronze)
-      │
-      ▼
-AWS Glue ETL Jobs
-Bronze → Silver → Gold
-      │
-      ▼
-Glue Data Catalog
-      │
-      ▼
-Amazon Athena
-      │
-      ▼
-FastAPI REST API
-      │
-      ▼
-React + TypeScript Dashboard
+```mermaid
+flowchart LR
+    A[YouTube API + Kaggle] --> B[Bronze S3]
+    B --> C[Glue: Silver]
+    C --> D{Data Quality Gate}
+    D -- pass --> E[Glue: Gold]
+    D -- fail --> F[SNS Alert]
+    E --> G[(Athena)]
+    G --> H[FastAPI]
+    H --> I[React Dashboard]
 ```
 
-------------------------------------------------------------------------
+Full diagrams and pipeline detail: [`docs/Architecture.md`](docs/Architecture.md) · [`docs/AWS-Pipeline.md`](docs/AWS-Pipeline.md)
 
-# ✨ Features
+---
 
--   📈 Executive KPI Dashboard
--   🍩 Donut & Scatter Charts
--   📊 Interactive Business Insights
--   🌎 Regional Analytics
--   🎬 Channel Analytics
--   🏷️ Category Analytics
--   ⚡ FastAPI REST APIs
--   ☁️ AWS Cloud Pipeline
--   📱 Responsive UI
+## Screenshots
 
-------------------------------------------------------------------------
+![Dashboard Overview](docs/screenshots/dashboard-overview.png)
+![Top Channels](docs/screenshots/top-channels.png)
 
-# 🛠️ Tech Stack
+---
 
-  Frontend     Backend    Cloud
-  ------------ ---------- -----------
-  React        FastAPI    Amazon S3
-  TypeScript   Python     AWS Glue
-  Recharts     Pandas     Athena
-  Axios        PyAthena   IAM
+## Features
 
-------------------------------------------------------------------------
+- **6 dashboards** — Overview, Analytics, Channels, Categories, Regions, Settings
+- Region filtering across every analytical view
+- Interactive charts: trend lines, donuts, bar charts, scatter plots, a geo
+  map, and a category × region heatmap
+- Searchable, paginated channel tables
+- Auto-generated business insights (top channel/category/region, computed
+  live, not hardcoded)
+- Automated data quality gate upstream (row count, nulls, schema, freshness)
 
-# 📡 API Endpoints
+---
 
-``` http
-GET /api/kpis
-GET /api/views-trend
-GET /api/category-distribution
-GET /api/top-channels
-GET /api/channels
-GET /api/regions
-GET /api/business-insights
+## Tech Stack
+
+**Data Engineering:** AWS Lambda · Glue (PySpark) · S3 · Step Functions · EventBridge · Athena · SNS · CloudWatch
+**Backend:** FastAPI · boto3 / PyAthena · pandas
+**Frontend:** React 19 · TypeScript · Vite · Tailwind CSS v4 · Recharts · Leaflet
+
+---
+
+## Project Structure
+
+```
+youtube-trending-analytics-dashboard/
+├── pipeline/       # AWS ETL: Lambdas, Glue jobs, Step Functions
+├── backend/        # FastAPI - queries Athena, exposes REST API
+├── frontend/       # React + TypeScript dashboard
+└── docs/           # Detailed documentation (see below)
 ```
 
-------------------------------------------------------------------------
+---
 
-# 📂 Project Structure
+## 📚 Documentation
 
-``` text
-backend/
-frontend/
-docs/
-README.md
-```
+- 📘 [AWS Pipeline](docs/AWS-Pipeline.md) — data flow, quality gates, orchestration
+- 📊 [Dashboard](docs/Dashboard.md) — pages, data model, API reference, local setup
+- 🏗 [Architecture](docs/Architecture.md) — full diagrams
+- 🚀 [Deployment](docs/Deployment.md) — Vercel + Render deployment guide
 
-------------------------------------------------------------------------
+---
 
-# 🎯 Skills Demonstrated
+## Author
 
-✅ Data Engineering
+**Rohit Mhala** — Data Analyst
+[GitHub](https://github.com/rohitmhala) · [Live Dashboard](https://youtube-trending-analytics-dashboar.vercel.app/)
 
-✅ ETL Pipeline Development
+<p align="center">⭐ If this is useful, a star is appreciated.</p>
 
-✅ AWS Cloud Analytics
-
-✅ Data Warehousing
-
-✅ SQL Analytics
-
-✅ REST API Development
-
-✅ Dashboard Development
-
-✅ Business Intelligence
-
-------------------------------------------------------------------------
-
-# 📝 Deployment
-
-  Component   Platform
-  ----------- ---------------
-  Frontend    Vercel
-  Backend     Render
-  Data Lake   Amazon S3
-  Analytics   Amazon Athena
-
-> **Note:** Render Free may take up to a minute on the first request
-> after inactivity.
-
-------------------------------------------------------------------------
-
-::: {align="center"}
-## ⭐ If you like this project, please give it a Star!
-
-### 👨‍💻 Rohit Mhala
-
-`<a href="https://youtube-trending-analytics-dashboar.vercel.app/">`{=html}🚀
-Live Dashboard`</a>`{=html} •
-`<a href="https://github.com/rohitmhala">`{=html}GitHub`</a>`{=html}
-:::
